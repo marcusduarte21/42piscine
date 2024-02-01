@@ -1,85 +1,52 @@
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
 
-int	is_zero(int nb)
-{
-	if(nb == 0)
+void	get_digit (int newnb, int div, int count)
+{	
+	int	charnum;
+	int	num2;
+
+	while (div != 1)
 	{
-		return (0);
+		num2 = newnb / div;
+		charnum = num2 + '0';
+		write (1, &charnum, 1);
+		newnb = newnb - (num2 * div);
+		div = div / 10;
 	}
+	charnum = newnb + '0';
+	write (1, &charnum, 1);
+	write (1, &"\n", 1);
+
 }
 
-int	is_negative(int nb)
+void    ft_putnbr (int nb)
 {
-	if (nb < 0)
-		return (0);
-}
-
-void	ft_putnbr (int nb)
-{
-	int	i;
-	int	j;
-	int	num;
+	int	count;
 	int	div;
-	int	a;
-	int	negative;
-
-	negative = 45;
-	a = 0;
-	i = 0;
+	int	newnb;
+	
 	div = 1;
-	if(!is_negative(nb))
+	count = 1;
+	if (nb < 0)
 	{
-		num = nb * -1;
-		write(1, &negative, 1);
+		nb = nb * -1;
+		write (1, &"-", 1);
 	}
-	else
-		num = nb;
-
-	while (nb != 0)
+	newnb = nb;
+	while (nb > 9)
 	{
+		div = div * 10;
 		nb = nb / 10;
-		i++;
+		count++;
 	}
-	j = i;
-	while (i != 0)
-	{
-		div = 10 * div;
-		i--;
-	}
-	while (j > 0 || a == 0) 
-	{
-		if (!is_zero(num))
-		{
-			i = 48;
-			write(1, &i, 1);
-			j = 0;
-			a++;
-		}
-		else if (a == 0)
-		{
-			i = num / (div / 10);
-			i = i + 48;
-			write(1, &i, 1);
-			div = div / 10 ;
-			j--;
-			a++;
-		}
-		else
-		{
-			div = div / 10 ;
-			i = num / div;
-			i = i % 10;
-			i = i + 48;
-			write(1, &i, 1);
-			j--;
-		}
-	}
-	printf("\n");
-		
+	get_digit (newnb, div, count);
 }
 
-int	main(void)
+
+int     main(void)
 {
-	ft_putnbr(1809);
+	int num;
+	ft_putnbr(9);
 }
+

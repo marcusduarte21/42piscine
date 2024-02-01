@@ -1,35 +1,37 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlages-d <mlages-d@student.42luxembou      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/27 16:02:09 by mlages-d          #+#    #+#             */
+/*   Updated: 2024/01/27 18:46:31 by mlages-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-float ft_sqrt(int nb)
+int	ft_sqrt(int nb)
 {
-	float	i;
+	int	i;
 
-	i = 0;
+	i = 1;
 	if (nb <= 0)
 		return (0);
-	while (i * i <= nb)
+	else if (nb == 1)
+		return (1);
+	while (i * i != nb && i < 46341)
 		i++;
 	if (i * i == nb)
 		return (i);
 	else
-	{
-		i--;
-		while(i * i < nb)
-		{
-			i = i + 0.1;
-		}
-		i = i - 0.1;
-		while(i * i < nb)
-			i = i + 0.000001;
-	}
-	return (i);
-
-
+		return (0);
 }
-
+/*
+#include <stdio.h>
 int	main(void)
 {
-	float num;
-	num = ft_sqrt(30);
-	printf("%f\n", num);
+	int num;
+	num = ft_sqrt(-2147483647);
+	printf("%d\n", num);
 }
+*/
